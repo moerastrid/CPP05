@@ -6,18 +6,19 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:52 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/09 16:57:35 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/09 18:08:33 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 
 void	errorMessage(std::string	str) {
 	std::cout << "\033[1;31m" << "Error - " << str << "\033[0m" << std::endl;
 }
 
-int	test_too_high(void) {
+int	bureaucratTestTooHigh(void) {
 	try {
 		Bureaucrat A("A++", 3);
 		A.incrementGrade(1);
@@ -36,7 +37,7 @@ int	test_too_high(void) {
 	return (0);
 }
 
-int	test_too_low(void) {
+int	bureaucratTestTooLow(void) {
 	try {
 		Bureaucrat Jerry("Jerry", 100);
 		std::cout << Jerry << std::endl;
@@ -56,7 +57,7 @@ int	test_too_low(void) {
 	return (0);
 }
 
-int	test_invalid_bureaucrat(void) {
+int	bureaucratTestInvalidBureaucrat(void) {
 	try {
 		Bureaucrat Imposter("Izzy", 151);
 	}
@@ -71,9 +72,16 @@ int	test_invalid_bureaucrat(void) {
 	return (0);
 }
 
+int	formTestTooHigh(void) {
+	Form monday("Monday", 120, 120);
+	std::cout << monday << std::endl;
+	return (0);
+}
+
 int	main(void) {
-	test_too_high();
-	test_too_low();
-	test_invalid_bureaucrat();
+	bureaucratTestTooHigh();
+	bureaucratTestTooLow();
+	bureaucratTestInvalidBureaucrat();
+	formTestTooHigh();
 	return (0);
 }
