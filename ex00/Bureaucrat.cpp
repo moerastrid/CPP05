@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:26 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/09 12:52:37 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/09 16:44:44 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,13 @@ Bureaucrat::Bureaucrat(const Bureaucrat &src) {
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src) {
 	message("'=' sign operator");
-	//_name = src.getName();
 	_grade = src.getGrade();
 	return (*this);
 }
 
-Bureaucrat::Bureaucrat(std::string name) : _name(name), _grade(150) {
-	message("constructur with argument 'name'");
-}
-
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
 	message("constructur with argument 'name' & 'grade'");
-	if (grade > 0 && grade <= 150)
-		_grade = grade;
-	// else : TODO exception
+	this->setGrade(grade);
 }
 
 std::string	Bureaucrat::getName(void) const {
@@ -53,4 +46,29 @@ std::string	Bureaucrat::getName(void) const {
 
 int	Bureaucrat::getGrade(void) const {
 	return (_grade);
+}
+
+void	Bureaucrat::setGrade(int grade) {
+	if (grade > 0 && grade <= 150)
+		_grade = grade;
+	else if (grade <= 0)
+		throw GradeTooHighException();
+	else
+		throw GradeTooLowException();
+}
+
+void	Bureaucrat::incrementGrade(int n) {
+	this->setGrade(this->getGrade() - n);
+}
+
+void	Bureaucrat::decrementGrade(int n) {
+	this->setGrade(this->getGrade() + n);
+}
+
+const char * Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("Grade exception : too high");
+}
+
+const char * Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("Grade exception : too low");
 }
