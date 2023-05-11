@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:25:20 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 14:09:23 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 20:50:44 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Bureaucrat {
 		int					_grade;
 		Bureaucrat(void);								//default constructor
 
-		void	message(std::string str);
+		void	message(std::string str) const;
 
 	public :
 		~Bureaucrat(void);								//default destructor
@@ -39,7 +39,8 @@ class Bureaucrat {
 		void		incrementGrade(int n);
 		void		decrementGrade(int n);
 
-		void		signAForm(AForm *Aform);
+		void		signAForm(AForm *aform);
+		void		executeForm(AForm const &aform);
 
 		class GradeTooHighException : public std::exception {
 			public :

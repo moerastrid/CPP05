@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:52 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 17:02:23 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 21:04:12 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,32 @@ int	bureaucratTestInvalidBureaucrat(void) {
 
 int	moreForms(void) {
 	try {
-		Bureaucrat SuperVisor("SuperVisor", 10);
-		Bureaucrat Jerry("Jerry", 100);
-
-		 
+		Bureaucrat SuperVisor("SuperVisor", 100);
+		Bureaucrat Jerry("Jerry", 145);
+		ShrubberyCreationForm Shrubby("home");
+		RobotomyRequestForm Robby("The bureaucrat");
+		PresidentialPardonForm Perry("Your mom");
+		Jerry.executeForm(Shrubby);
+		Jerry.executeForm(Robby);
+		Jerry.executeForm(Perry);
+		Jerry.signAForm(&Shrubby);
+		Jerry.signAForm(&Robby);
+		Jerry.signAForm(&Perry);
+		Jerry.executeForm(Shrubby);
+		SuperVisor.executeForm(Shrubby);
+		SuperVisor.signAForm(&Robby);
+		SuperVisor.signAForm(&Perry);
+		Bureaucrat Pro("Pro", 20);
+		Pro.signAForm(&Robby);
+		Pro.signAForm(&Perry);
+		Jerry.executeForm(Robby);
+		Jerry.executeForm(Perry);
+		SuperVisor.executeForm(Robby);
+		SuperVisor.executeForm(Perry);
+		Pro.executeForm(Robby);
+		Pro.executeForm(Perry);
+		Bureaucrat Corine("Corine", 1);
+		Corine.executeForm(Perry);
 	}
 	catch (Bureaucrat::GradeTooHighException &e) {
 		errorMessage(e.what());

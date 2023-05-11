@@ -25,29 +25,34 @@ class AForm {
 		bool				_isSigned;
 		const int			_signGrade;
 		const int			_execGrade;
-		AForm(void);							//default constructor
+		AForm(void);						//default constructor
+		AForm &operator=(const AForm &src);	//'=' sign operator
 
-		virtual void	message(std::string str);
+	protected :
+		AForm(const AForm &src);				//copy constructor
+		AForm(std::string str, int signGrade, int execGrade);
+		virtual void	message(std::string str) const;
 
 	public :
 		virtual ~AForm(void);						//default destructor
-		AForm(const AForm &src);				//copy constructor
-		AForm &operator=(const AForm &src);	//'=' sign operator
-		AForm(std::string str, int signGrade, int execGrade);
 
-		std::string	getName(void) const;
-		bool		getIsSigned(void) const;
-		int			getSignGrade(void) const;
-		int			getExecGrade(void) const;
-
-		void	beSigned(Bureaucrat	&bureaucrat);
-		virtual void	execute(Bureaucrat const & executor) const = 0;
+		std::string			getName(void) const;
+		bool				getIsSigned(void) const;
+		int					getSignGrade(void) const;
+		int					getExecGrade(void) const;
+		virtual std::string	getType(void) = 0;
+		void				beSigned(Bureaucrat &signer);
+		void				execute(Bureaucrat const &executor) const;
 
 		class GradeTooHighException : public std::exception {
 			public :
 				virtual const char * what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
+			public :
+				virtual const char * what() const throw();
+		};
+		class FormNotSignedException : public std::exception {
 			public :
 				virtual const char * what() const throw();
 		};

@@ -12,8 +12,9 @@
 
 #include "AForm.hpp"
 
-void	AForm::message(std::string	str) {
-	std::cout << "\033[1;34m" << "AForm - " << str << "\033[0m" << std::endl;
+void	AForm::message(std::string	str) const {
+	//std::cout << "\033[1;30m" << "AForm - " << str << "\033[0m" << std::endl;
+	(void)str;
 }
 
 AForm::AForm(void) : _name(""), _signGrade(150), _execGrade(150) {
@@ -25,14 +26,15 @@ AForm::~AForm(void) {
 	message("default destructor");
 }
 
-AForm::AForm(const AForm &src) : _signGrade(src._signGrade), _execGrade(src._execGrade) {
+AForm::AForm(const AForm &src) : _name(src.getName()), _signGrade(src._signGrade), _execGrade(src._execGrade) {
 	message("copy constructor");
+	_isSigned = false;
 	*this = src;
 }
 
 AForm	&AForm::operator=(const AForm &src) {
 	message("'=' sign operator");
-	_isSigned = src._isSigned;
+	(void)src;
 	return (*this);
 }
 
@@ -61,11 +63,19 @@ int	AForm::getExecGrade(void) const {
 	return (_execGrade);
 }
 
-void	AForm::beSigned(Bureaucrat	&bureaucrat) {
+void	AForm::beSigned(Bureaucrat &signer) {
 	message("be signed called");
-	if	(bureaucrat.getGrade() <= this->getSignGrade())
+	if	(signer.getGrade() <= this->getSignGrade())
 		_isSigned = true;
 	else
+		throw GradeTooLowException();
+}
+
+void	AForm::execute(Bureaucrat const &executor) const {
+	message("execute called");
+	if (this->_isSigned == false)
+		throw FormNotSignedException();
+	if (executor.getGrade() > this->getExecGrade())
 		throw GradeTooLowException();
 }
 
@@ -75,6 +85,10 @@ const char * AForm::GradeTooHighException::what() const throw() {
 
 const char * AForm::GradeTooLowException::what() const throw() {
 	return ("Grade exception : too low");
+}
+
+const char * AForm::FormNotSignedException::what() const throw() {
+	return ("Form exception : not signed");
 }
 
 std::ostream	&operator<<(std::ostream &o, AForm const &i) {
