@@ -6,7 +6,7 @@
 #    By: ageels <ageels@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/05/09 12:15:13 by ageels        #+#    #+#                  #
-#    Updated: 2023/05/09 17:37:59 by ageels        ########   odam.nl          #
+#    Updated: 2023/05/11 10:30:41 by ageels        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = Form_up_maggots
 
 FLAGS = -I. -Wall -Werror -Wextra -std=c++98
 
-HDR = Bureaucrat.hpp
+HDR = Bureaucrat.hpp\
+	Form.hpp
 
 SRC = main.cpp\
 	Bureaucrat.cpp\

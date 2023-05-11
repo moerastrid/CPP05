@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 16:55:02 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/09 18:06:59 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 11:27:20 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ std::string	Form::getName(void) const {
 	return (_name);
 }
 
-bool	Form::getState(void) const {
+bool	Form::getIsSigned(void) const {
 	return (_isSigned);
 }
 
@@ -59,6 +59,13 @@ int	Form::getSignGrade(void) const {
 
 int	Form::getExecGrade(void) const {
 	return (_execGrade);
+}
+
+void	Form::beSigned(Bureaucrat	bureaucrat) {
+	if	(bureaucrat.getGrade() <= this->getSignGrade())
+		_isSigned = true;
+	else
+		throw GradeTooLowException();
 }
 
 const char * Form::GradeTooHighException::what() const throw() {
@@ -71,7 +78,7 @@ const char * Form::GradeTooLowException::what() const throw() {
 
 std::ostream	&operator<<(std::ostream &o, Form const &i) {
 	o << i.getName() << ", form status: ";
-	if (i.getState() == true)
+	if (i.getIsSigned() == true)
 		o << "signed! ";
 	else
 		o << "unsigned! ";

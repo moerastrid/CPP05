@@ -6,13 +6,18 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 16:48:47 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/09 18:08:04 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 11:25:45 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FORM_HPP
+#define FORM_HPP
 
 #include <string>
 #include <iostream>
 #include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form {
 	private :
@@ -31,9 +36,11 @@ class Form {
 		Form(std::string str, int signGrade, int execGrade);
 
 		std::string	getName(void) const;
-		bool		getState(void) const;
-		int	getSignGrade(void) const;
-		int	getExecGrade(void) const;
+		bool		getIsSigned(void) const;
+		int			getSignGrade(void) const;
+		int			getExecGrade(void) const;
+
+		void		beSigned(Bureaucrat	bureaucrat);
 
 		class GradeTooHighException : public std::exception {
 			public :
@@ -46,3 +53,5 @@ class Form {
 };
 
 std::ostream	&operator<<(std::ostream &o, Form const &i);
+
+#endif

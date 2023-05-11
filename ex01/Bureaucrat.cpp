@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:26 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/09 17:15:39 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 11:27:05 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	Bureaucrat::getGrade(void) const {
 }
 
 void	Bureaucrat::setGrade(int grade) {
+	message("set grade called");
 	if (grade > 0 && grade <= 150)
 		_grade = grade;
 	else if (grade <= 0)
@@ -58,11 +59,28 @@ void	Bureaucrat::setGrade(int grade) {
 }
 
 void	Bureaucrat::incrementGrade(int n) {
+	message("increment grade called");
 	this->setGrade(this->getGrade() - n);
 }
 
 void	Bureaucrat::decrementGrade(int n) {
+	message("decrement grade called");
 	this->setGrade(this->getGrade() + n);
+}
+
+void	Bureaucrat::signForm(Form *form) {
+	try {
+		if (form->getIsSigned() == true)
+		{
+			std::cout << this->getName() << " couldn't sign " << form->getName();
+			std::cout << " because it's already signed!";
+		}
+		form->beSigned(*this);
+		if (form->getIsSigned() == true)
+			std::cout << this->getName() << " signed " << form->getName();
+	} catch (Form::GradeTooHighException &e) {
+		e.what();
+	}
 }
 
 const char * Bureaucrat::GradeTooHighException::what() const throw() {

@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:25:20 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/09 16:54:49 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 11:24:27 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <string>
 # include <iostream>
+# include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
 	private :
@@ -35,6 +38,8 @@ class Bureaucrat {
 		void		setGrade(int n);
 		void		incrementGrade(int n);
 		void		decrementGrade(int n);
+
+		void		signForm(Form *form);
 
 		class GradeTooHighException : public std::exception {
 			public :

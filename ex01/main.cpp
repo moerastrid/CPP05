@@ -6,12 +6,13 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:52 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/09 18:08:33 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 11:33:13 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
+
 #include <iostream>
 
 void	errorMessage(std::string	str) {
@@ -72,16 +73,35 @@ int	bureaucratTestInvalidBureaucrat(void) {
 	return (0);
 }
 
-int	formTestTooHigh(void) {
-	Form monday("Monday", 120, 120);
-	std::cout << monday << std::endl;
+int	formTestException(void) {
+	try {
+		Form monday("Monday", 120, 120);
+		Form tuesday("Tuesday", 120, 1);
+		Form wednesday("Wednesday", -1, 120);
+		std::cout << monday << std::endl;
+		std::cout << tuesday << std::endl;
+		std::cout << wednesday << std::endl;
+	}
+	catch (Bureaucrat::GradeTooHighException &e) {
+		errorMessage(e.what());
+		return (1);
+	} 
+	catch (Bureaucrat::GradeTooLowException &e) {
+		errorMessage(e.what());
+		return (1);
+	}
 	return (0);
 }
 
 int	main(void) {
+	std::cout << std::endl;
 	bureaucratTestTooHigh();
+	std::cout << std::endl;
 	bureaucratTestTooLow();
+	std::cout << std::endl;
 	bureaucratTestInvalidBureaucrat();
-	formTestTooHigh();
+	std::cout << std::endl;
+	formTestException();
+	std::cout << std::endl;
 	return (0);
 }
