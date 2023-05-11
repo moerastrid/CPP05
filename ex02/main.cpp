@@ -6,12 +6,14 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:52 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 14:08:05 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 17:02:23 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
 #include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 #include <iostream>
 
@@ -73,54 +75,80 @@ int	bureaucratTestInvalidBureaucrat(void) {
 	return (0);
 }
 
-int	formTestException(void) {
-	try {
-		Form monday("Monday", 120, 120);
-		Form tuesday("Tuesday", 120, INT_MAX);
-		Form wednesday("Wednesday", INT_MIN, 120);
-		std::cout << monday << std::endl;
-		std::cout << tuesday << std::endl;
-		std::cout << wednesday << std::endl;
-	}
-	catch (Form::GradeTooHighException &e) {
-		errorMessage(e.what());
-		return (1);
-	} 
-	catch (Form::GradeTooLowException &e) {
-		errorMessage(e.what());
-		return (1);
-	}
-	return (0);
-}
+//int	AformTestException(void) {
+//	try {
+//		AForm monday("Monday", 120, 120);
+//		AForm tuesday("Tuesday", 120, INT_MAX);
+//		AForm wednesday("Wednesday", INT_MIN, 120);
+//		std::cout << monday << std::endl;
+//		std::cout << tuesday << std::endl;
+//		std::cout << wednesday << std::endl;
+//	}
+//	catch (AForm::GradeTooHighException &e) {
+//		errorMessage(e.what());
+//		return (1);
+//	} 
+//	catch (AForm::GradeTooLowException &e) {
+//		errorMessage(e.what());
+//		return (1);
+//	}
+//	return (0);
+//}
 
-int	signingForms(void) {
+//int	signingAForms(void) {
+//	try {
+//		Bureaucrat SuperVisor("SuperVisor", 10);
+//		Bureaucrat Jerry("Jerry", 100);
+//		std::cout << Jerry << std::endl;
+//		AForm monday("Monday", 90, 90);
+//		AForm tuesday("Tuesday", 10, 90);
+//		AForm wednesday("Wednesday", 90, 10);
+//		std::cout << monday << std::endl;
+//		std::cout << tuesday << std::endl;
+//		std::cout << wednesday << std::endl;
+//		Jerry.signAForm(&monday);
+//		Jerry.signAForm(&tuesday);
+//		SuperVisor.signAForm(&wednesday);
+//		Jerry.incrementGrade(20);
+//		Jerry.signAForm(&wednesday);
+//		monday.beSigned(SuperVisor);
+//		std::cout << monday << std::endl;
+//		std::cout << tuesday << std::endl;
+//		std::cout << wednesday << std::endl << std::endl;
+
+//		AForm	*today = NULL;
+//		today = &monday;
+//		AForm	*tomorrow = &tuesday;
+//		std::cout << *today << std::endl;
+//		std::cout << *tomorrow << std::endl;
+//		Jerry.signAForm(today);
+//		Jerry.signAForm(tomorrow);
+//	}
+//	catch (Bureaucrat::GradeTooHighException &e) {
+//		errorMessage(e.what());
+//		return (1);
+//	} 
+//	catch (Bureaucrat::GradeTooLowException &e) {
+//		errorMessage(e.what());
+//		return (1);
+//	}
+//	catch (AForm::GradeTooHighException &e) {
+//		errorMessage(e.what());
+//		return (1);
+//	} 
+//	catch (AForm::GradeTooLowException &e) {
+//		errorMessage(e.what());
+//		return (1);
+//	}
+//	return (0);
+//}
+
+int	moreForms(void) {
 	try {
 		Bureaucrat SuperVisor("SuperVisor", 10);
 		Bureaucrat Jerry("Jerry", 100);
-		std::cout << Jerry << std::endl;
-		Form monday("Monday", 90, 90);
-		Form tuesday("Tuesday", 10, 90);
-		Form wednesday("Wednesday", 90, 10);
-		std::cout << monday << std::endl;
-		std::cout << tuesday << std::endl;
-		std::cout << wednesday << std::endl;
-		Jerry.signForm(&monday);
-		Jerry.signForm(&tuesday);
-		SuperVisor.signForm(&wednesday);
-		Jerry.incrementGrade(20);
-		Jerry.signForm(&wednesday);
-		monday.beSigned(SuperVisor);
-		std::cout << monday << std::endl;
-		std::cout << tuesday << std::endl;
-		std::cout << wednesday << std::endl << std::endl;
 
-		Form	*today = NULL;
-		today = &monday;
-		Form	*tomorrow = &tuesday;
-		std::cout << *today << std::endl;
-		std::cout << *tomorrow << std::endl;
-		Jerry.signForm(today);
-		Jerry.signForm(tomorrow);
+		 
 	}
 	catch (Bureaucrat::GradeTooHighException &e) {
 		errorMessage(e.what());
@@ -130,11 +158,11 @@ int	signingForms(void) {
 		errorMessage(e.what());
 		return (1);
 	}
-	catch (Form::GradeTooHighException &e) {
+	catch (AForm::GradeTooHighException &e) {
 		errorMessage(e.what());
 		return (1);
 	} 
-	catch (Form::GradeTooLowException &e) {
+	catch (AForm::GradeTooLowException &e) {
 		errorMessage(e.what());
 		return (1);
 	}
@@ -142,16 +170,18 @@ int	signingForms(void) {
 }
 
 int	main(void) {
+	//std::cout << std::endl;
+	//bureaucratTestTooHigh();
+	//std::cout << std::endl;
+	//bureaucratTestTooLow();
+	//std::cout << std::endl;
+	//bureaucratTestInvalidBureaucrat();
+	//std::cout << std::endl;
+	//AformTestException();
+	//std::cout << std::endl;
+	//signingAForms();
 	std::cout << std::endl;
-	bureaucratTestTooHigh();
-	std::cout << std::endl;
-	bureaucratTestTooLow();
-	std::cout << std::endl;
-	bureaucratTestInvalidBureaucrat();
-	std::cout << std::endl;
-	formTestException();
-	std::cout << std::endl;
-	signingForms();
+	moreForms();
 	std::cout << std::endl;
 	return (0);
 }
