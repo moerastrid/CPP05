@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:52 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 13:56:33 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 14:04:56 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,15 @@ int	signingForms(void) {
 		monday.beSigned(SuperVisor);
 		std::cout << monday << std::endl;
 		std::cout << tuesday << std::endl;
-		std::cout << wednesday << std::endl;
+		std::cout << wednesday << std::endl << std::endl;
+
+		Form	*today = NULL;
+		today = &monday;
+		Form	*tomorrow = &tuesday;
+		std::cout << *today << std::endl;
+		std::cout << *tomorrow << std::endl;
+		Jerry.signForm(today);
+		Jerry.signForm(tomorrow);
 	}
 	catch (Bureaucrat::GradeTooHighException &e) {
 		errorMessage(e.what());
