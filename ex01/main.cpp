@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:52 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 11:33:13 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 11:42:12 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,39 @@ int	bureaucratTestInvalidBureaucrat(void) {
 int	formTestException(void) {
 	try {
 		Form monday("Monday", 120, 120);
-		Form tuesday("Tuesday", 120, 1);
-		Form wednesday("Wednesday", -1, 120);
+		Form tuesday("Tuesday", 120, INT_MAX);
+		Form wednesday("Wednesday", INT_MIN, 120);
 		std::cout << monday << std::endl;
 		std::cout << tuesday << std::endl;
 		std::cout << wednesday << std::endl;
+	}
+	catch (Form::GradeTooHighException &e) {
+		errorMessage(e.what());
+		return (1);
+	} 
+	catch (Form::GradeTooLowException &e) {
+		errorMessage(e.what());
+		return (1);
+	}
+	return (0);
+}
+
+int	signingForms(void) {
+	try {
+		Bureaucrat SuperVisor("SuperVisor", 10);
+		Bureaucrat Jerry("Jerry", 100);
+		std::cout << Jerry << std::endl;
+		Form monday("Monday", 90, 90);
+		Form tuesday("Tuesday", 90, 10);
+		Form wednesday("Wednesday", 10, 90);
+		std::cout << monday << std::endl;
+		std::cout << tuesday << std::endl;
+		std::cout << wednesday << std::endl;
+		Jerry.signForm(&monday);
+		Jerry.signForm(&tuesday);
+		
+		Jerry.incrementGrade(20);
+		std::cout << Jerry << std::endl;
 	}
 	catch (Bureaucrat::GradeTooHighException &e) {
 		errorMessage(e.what());
@@ -90,18 +118,28 @@ int	formTestException(void) {
 		errorMessage(e.what());
 		return (1);
 	}
+	catch (Form::GradeTooHighException &e) {
+		errorMessage(e.what());
+		return (1);
+	} 
+	catch (Form::GradeTooLowException &e) {
+		errorMessage(e.what());
+		return (1);
+	}
 	return (0);
 }
 
 int	main(void) {
 	std::cout << std::endl;
-	bureaucratTestTooHigh();
-	std::cout << std::endl;
-	bureaucratTestTooLow();
-	std::cout << std::endl;
-	bureaucratTestInvalidBureaucrat();
-	std::cout << std::endl;
-	formTestException();
+	//bureaucratTestTooHigh();
+	//std::cout << std::endl;
+	//bureaucratTestTooLow();
+	//std::cout << std::endl;
+	//bureaucratTestInvalidBureaucrat();
+	//std::cout << std::endl;
+	//formTestException();
+	//std::cout << std::endl;
+	signingForms();
 	std::cout << std::endl;
 	return (0);
 }

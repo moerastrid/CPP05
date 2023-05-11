@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:26 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 11:27:05 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 11:41:46 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Bureaucrat::~Bureaucrat(void) {
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src) {
-	message("copy destructor");
+	message("copy constructor");
 	*this = src;
 }
 
