@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:26 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 11:41:46 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 13:52:48 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,16 @@ void	Bureaucrat::signForm(Form *form) {
 		if (form->getIsSigned() == true)
 		{
 			std::cout << this->getName() << " couldn't sign " << form->getName();
-			std::cout << " because it's already signed!";
+			std::cout << " because it's already signed!" << std::endl;
+			return ;
 		}
 		form->beSigned(*this);
 		if (form->getIsSigned() == true)
-			std::cout << this->getName() << " signed " << form->getName();
-	} catch (Form::GradeTooHighException &e) {
-		e.what();
+			std::cout << this->getName() << " signed " << form->getName() << std::endl;
+	} catch (Form::GradeTooLowException &e) {
+		std::cout << this->getName() << " couldn't sign " << form->getName();
+		std::cout << " because his grade is too low!" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 }
 

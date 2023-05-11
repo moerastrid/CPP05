@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 16:48:47 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 11:25:45 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 13:50:09 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class Form {
 		int			getSignGrade(void) const;
 		int			getExecGrade(void) const;
 
-		void		beSigned(Bureaucrat	bureaucrat);
+		void		beSigned(Bureaucrat	&bureaucrat);
 
 		class GradeTooHighException : public std::exception {
 			public :

@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 16:55:02 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 11:27:20 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 13:54:29 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	Form::getExecGrade(void) const {
 	return (_execGrade);
 }
 
-void	Form::beSigned(Bureaucrat	bureaucrat) {
+void	Form::beSigned(Bureaucrat	&bureaucrat) {
+	message("be signed called");
 	if	(bureaucrat.getGrade() <= this->getSignGrade())
 		_isSigned = true;
 	else

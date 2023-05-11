@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:52 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 11:42:12 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/11 13:56:33 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,20 @@ int	signingForms(void) {
 		Bureaucrat Jerry("Jerry", 100);
 		std::cout << Jerry << std::endl;
 		Form monday("Monday", 90, 90);
-		Form tuesday("Tuesday", 90, 10);
-		Form wednesday("Wednesday", 10, 90);
+		Form tuesday("Tuesday", 10, 90);
+		Form wednesday("Wednesday", 90, 10);
 		std::cout << monday << std::endl;
 		std::cout << tuesday << std::endl;
 		std::cout << wednesday << std::endl;
 		Jerry.signForm(&monday);
 		Jerry.signForm(&tuesday);
-		
+		SuperVisor.signForm(&wednesday);
 		Jerry.incrementGrade(20);
-		std::cout << Jerry << std::endl;
+		Jerry.signForm(&wednesday);
+		monday.beSigned(SuperVisor);
+		std::cout << monday << std::endl;
+		std::cout << tuesday << std::endl;
+		std::cout << wednesday << std::endl;
 	}
 	catch (Bureaucrat::GradeTooHighException &e) {
 		errorMessage(e.what());
