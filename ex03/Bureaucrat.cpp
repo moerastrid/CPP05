@@ -6,15 +6,15 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:26 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 21:06:33 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/15 13:37:50 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 void	Bureaucrat::message(std::string	str) const {
-	//std::cout << "\033[1;33m" << "Bureaucrat - " << str << "\033[0m" << std::endl;
-	(void)str;
+	std::cout << "\033[1;33m" << "Bureaucrat - " << str << "\033[0m" << std::endl;
+	//(void)str;
 }
 
 Bureaucrat::Bureaucrat(void) : _name(""), _grade(150) {

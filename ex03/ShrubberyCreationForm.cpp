@@ -6,15 +6,15 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/11 14:56:36 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 21:19:05 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/15 13:45:44 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
 void	ShrubberyCreationForm::message(std::string	str) const {
-	//std::cout << "\033[1;35m" << "ShrubberyCreationForm - " << str << "\033[0m" << std::endl;
-	(void)str;
+	std::cout << "\033[1;35m" << "ShrubberyCreationForm - " << str << "\033[0m" << std::endl;
+	//(void)str;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137) {

@@ -13,8 +13,8 @@
 #include "AForm.hpp"
 
 void	AForm::message(std::string	str) const {
-	//std::cout << "\033[1;30m" << "AForm - " << str << "\033[0m" << std::endl;
-	(void)str;
+	std::cout << "\033[1;30m" << "AForm - " << str << "\033[0m" << std::endl;
+	//(void)str;
 }
 
 AForm::AForm(void) : _name(""), _signGrade(150), _execGrade(150) {

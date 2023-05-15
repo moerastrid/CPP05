@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/11 14:56:19 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 21:06:25 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/15 13:45:39 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <unistd.h>
 
 void	RobotomyRequestForm::message(std::string	str) const {
-	//std::cout << "\033[1;36m" << "RobotomyRequestForm - " << str << "\033[0m" << std::endl;
-	(void)str;
+	std::cout << "\033[1;36m" << "RobotomyRequestForm - " << str << "\033[0m" << std::endl;
+	//(void)str;
 }
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45) {

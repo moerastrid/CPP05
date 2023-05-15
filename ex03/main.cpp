@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 12:21:52 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/11 22:41:26 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/15 13:51:19 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 #include <iostream>
 
-//void	errorMessage(std::string	str) {
-//	std::cout << "\033[1;31m" << "Error - " << str << "\033[0m" << std::endl;
-//}
+void	errorMessage(std::string	str) {
+	std::cout << "\033[1;31m" << "Error - " << str << "\033[0m" << std::endl;
+}
 
 //int	bureaucratTestTooHigh(void) {
 //	try {
@@ -194,22 +194,22 @@
 
 int	the_intern(void) {
 	Intern someRandomIntern;
-	//AForm* forms[10];
+	AForm* forms[10];
 
 	delete (int *)NULL;
-	//for (int i(0); i < 10; i++)
-	//{
-	//	if (i % 4)
-	//		forms[i] = someRandomIntern.makeForm("shrubbery creation", "Little robot");
-	//	else if (i % 3)
-	//		forms[i] = someRandomIntern.makeForm("robotomy request", "Sir President");
-	//	else if (i % 2)
-	//		forms[i] = someRandomIntern.makeForm("presidental request", "Sir President");
-	//	else
-	//		forms[i] = someRandomIntern.makeForm("shrubbery creation", "mistake?");
-	//}
-	//for (int i(0); forms[i]; i++)
-	//	delete forms[i];
+	for (int i(0); i < 10; i++)
+	{
+		if (i % 5 == 0)
+			forms[i] = someRandomIntern.makeForm("shrubbery creation", "Little robot");
+		else if (i % 3 == 0)
+			forms[i] = someRandomIntern.makeForm("robotomy request", "The bureaucrat");
+		else if (i % 2 == 0)
+			forms[i] = someRandomIntern.makeForm("presidental request", "Sir President");
+		else
+			forms[i] = someRandomIntern.makeForm("shrubbery creation", "the intern");
+	}
+	for (int i(0); forms[i]; i++)
+		delete forms[i];
 	return (0);
 }
 

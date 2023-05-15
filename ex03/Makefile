@@ -6,7 +6,7 @@
 #    By: ageels <ageels@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/05/09 12:15:13 by ageels        #+#    #+#                  #
-#    Updated: 2023/05/11 21:53:00 by ageels        ########   odam.nl          #
+#    Updated: 2023/05/15 13:59:04 by ageels        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,9 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 
+formclean : 
+	rm -f *_shrubbery
+
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re formclean
